@@ -1,0 +1,16 @@
+{"time":946684800000,"level":"error","message":"print error message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"mumbai"}}
+{"time":946684800000,"level":"warn","message":"print warn message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"}}
+{"time":946684800000,"level":"info","message":"print info message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"}}
+other log
+{"time":946684800000,"level":"verbose","message":"print verbose message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"delhi"}}
+{"time":946684800000,"level":"debug","message":"print debug message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"}}
+system is ready
+error: 
+  some error here
+{"time":946684800000,"level":"http","message":"print http message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"}}
+{"time":946684800000,"level":"silly","message":"print silly message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"}}
+{"time":946684800000,"level":"cb_debug","message":"print debug message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"}}
+{"time":946684800000,"level":"cb_http","message":"print http message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"}}
+{"time":946684800000,"level":"cb_silly","message":"print silly message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"}}
+
+{"time":946684800000,"level":"debug","message":"print debug message","hostname":"my-machine","hostip":"127.0.0.1","pid":123,"address":{"city":"ranchi"},"subLevel":"major"}

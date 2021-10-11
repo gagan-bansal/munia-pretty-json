@@ -41,8 +41,8 @@ $ munia-pretty-json  --template  '{module --color} {level} {message}'  app-log.j
 ### Usage
 
 <pre>
-  Usage: munia-pretty-json [options] <json-file>
-         tail -f <json-file> | munia-pretty-json [options]
+  Usage: munia-pretty-json [options] &lt;json-file&gt;
+         tail -f &lt;json-file&gt; | munia-pretty-json [options]
          node myapp.js | munia-pretty-json [options]
 
   Options:

@@ -1,6 +1,6 @@
 {
   "name": "munia-pretty-json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Convert the JSON log into readable form with command line.",
   "repository": {
     "type": "git",

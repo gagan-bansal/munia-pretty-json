@@ -3,5 +3,5 @@
 [1m[94mdebug[39m[22m: print debug message
 [1m[38;2;190;190;190mhttp[39m[22m: print http message
 [1m[95msilly[39m[22m: print silly message
-[38;2;33;217;43m[1mcb_debug[22m[39m: print debug message
+[38;2;255;224;102m[1mcb_debug[22m[39m: print debug message
 ...

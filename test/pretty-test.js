@@ -1,5 +1,13 @@
 const t = require('tap')
 
+const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/utc')
+const timezone = require('dayjs/plugin/timezone')
+dayjs.extend(utc)
+dayjs.extend(timezone)
+const sinon = require('sinon')
+sinon.stub(dayjs.tz, 'guess').returns('America/New_York')
+
 const pretty = require('../lib/pretty.js')
 
 // default
@@ -33,7 +41,7 @@ t.equal(
   'not included error, should not print'
 )
 
-// exclude 
+// exclude
 pj = pretty({template: '{level -e info}: {message}'})
 t.equal(
   pj({time:123, level: 'info', message: 'foo'}),
@@ -70,6 +78,7 @@ t.equal(
   'filter, regex match with flags, should print'
 )
 
+// width
 pj = pretty({template: '{level} - {message -w 3}'})
 t.equal(
   pj({time:123, level: 'info', message: 'foo123'}),
@@ -77,7 +86,6 @@ t.equal(
   'width, truncate from start'
 )
 
-// width
 pj = pretty({template: '{level} - {message -w=-3}'})
 t.equal(
   pj({time:123, level: 'info', message: 'foo123'}),
@@ -85,7 +93,7 @@ t.equal(
   'width, truncate backward'
 )
 
-// level-key 
+// level-key
 pj = pretty({template: '{lvl --level-key}: {message}'})
 t.equal(
   pj({time:123, lvl: 'info', message: 'foo'}),
@@ -144,3 +152,18 @@ t.equal(
   'print key with deep path'
 )
 
+// time, convert to string
+pj = pretty({template: '{time --time} - {message}'})
+t.equal(
+  pj({time:946684800000, level: 'info', message: 'foo'}),
+  '1999-12-31T19:00:00-05:00 - foo',
+  'print time to local string format'
+)
+
+// time, convert to given format
+pj = pretty({template: '{time --time "[YYYYescape] YYYY-MM-DD T HH:mm:ss Z"} - {message}'})
+t.equal(
+  pj({time:946684800000, level: 'info', message: 'foo'}),
+  'YYYYescape 1999-12-31 T 19:00:00 -05:00 - foo',
+  'print time to given format'
+)

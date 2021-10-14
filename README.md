@@ -75,6 +75,12 @@ $ munia-pretty-json  --template  '{module --color} {level} {message}'  app-log.j
                          default 'info'
                          --level=info is equivenlent to --include=error,warn,info
                          Note: option only related to level key
+    -t, --time ......... format the time key value from milli seconds to string
+                         optional tokens can also be given to format the time
+                         example: -t '[YYYYescape] YYYY-MM-DDTHH:mm:ssZ[Z]'
+                         tokens as per dayjs https://day.js.org/docs/en/display/format
+                         Note: option only related to time key
+
   Special keys:
 
     REST ............... print rest of the keys and values as a JSON string

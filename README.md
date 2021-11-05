@@ -1,6 +1,6 @@
 ## munia-pretty-json
 
-Convert the JSON log into readable form with command line.
+Convert the JSON log into readable form with command line. JSON logs can also be viewed as gird/table form on console.
 
 ### Installation
 
@@ -31,7 +31,7 @@ This turns the JSON to:
 With this tool the main feature is **template** that prettifies easily the JSON. Here is an example of template:
 
 ```sh
-$ munia-pretty-json  --template  '{module --color} {level} {message}'  app-log.json<br> 
+$ munia-pretty-json  --template  '{module --color} - {level} - {message}'  app-log.json
 ```
 
 ![output](output2.png)
@@ -54,8 +54,10 @@ $ munia-pretty-json  --template  '{module --color} {level} {message}'  app-log.j
     -C, --context ...... print number of lines before and after context
     -a, --all .......... print formatted json and non json records if true, default true
                          print only formatted json if false
+    -g, --grid ......... grid/table view, default false
     -d, --debug ........ print json parsing error message, default false
     -h, --help ......... help/usage infromation
+    -v, --version ...... version of this app
 
   template options:
 
@@ -63,6 +65,8 @@ $ munia-pretty-json  --template  '{module --color} {level} {message}'  app-log.j
     -i, --include ...... include records which match the value of key
     -e, --exclude ...... exclude records which match the value of key
     -f, --filter ....... regular expression to filter the records
+    -s, --span ......... span as number of characters for the column widh
+                         in grid/table view
     -w, --width ........ width of string to be printed
                          if negative then width is considered backward
     --level-key ........ log level key, default 'level',

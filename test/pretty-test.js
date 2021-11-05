@@ -25,6 +25,25 @@ t.equal(
   "info: foo",
   'template as option'
 )
+t.notOk(pj.keysCount, 'output not an array, does not have keyCount')
+t.notOk(pj.keysSpan, 'output not an array, does not have keysSpan')
+
+// output as an array
+pj = pretty({template: '{level}: {message}', outputAsArray: true})
+t.deepEqual(
+  pj({time:123, level: 'info', message: 'foo'}),
+  ['info', 'foo'],
+  'output as array'
+)
+t.equal(pj.keysCount, 2, 'output as an array with key\'s count')
+t.ok(pj.keysSpan, 'output as an array without span has keySpan, ')
+t.ok(pj.keysSpan, 'output as an array with out key\'s span')
+t.deepEqual(pj.keysSpan, [undefined, undefined], 'output as an array without key\'s span array of undefined')
+
+// output as an array with span
+pj = pretty({template: '{level -s 10}: {message -s 30}', outputAsArray: true})
+t.ok(pj.keysSpan, 'output as an array with key\'s span')
+t.deepEqual(pj.keysSpan, [10, 30], 'output as an array with key\'s span number')
 
 // include
 pj = pretty({template: '{level -i info,debug} - {message}'})

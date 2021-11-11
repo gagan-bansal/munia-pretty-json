@@ -112,6 +112,21 @@ t.equal(
   'width, truncate backward'
 )
 
+// width: str width less than required
+pj = pretty({template: '{level} - {message -w 30}'})
+t.equal(
+  pj({time:123, level: 'info', message: 'foo123'}),
+  "info - foo123",
+  'width, from start: do not truncate short string'
+)
+
+pj = pretty({template: '{level} - {message -w=-30}'})
+t.equal(
+  pj({time:123, level: 'info', message: 'foo123'}),
+  "info - foo123",
+  'width, truncate backward: do not truncate short string'
+)
+
 // level-key
 pj = pretty({template: '{lvl --level-key}: {message}'})
 t.equal(

@@ -5,7 +5,10 @@ const cmd = require('../test/cmd-helper.js')
 
 const cli = path.resolve(process.cwd(), './lib/cli.js')
 const logFile = path.resolve(process.cwd(), './test/fixtures/json-log.json')
+const logFileErrorKey = path.resolve(process.cwd(), './test/fixtures/json-log-with-error-key.json')
 
+// collecting all outputs from fixtures as an object
+// with filename as key
 const output = fs.readdirSync(path.resolve(__dirname, 'fixtures'))
   .filter(f => /\.txt$/.test(f))
   .reduce((obj, file) => {
@@ -66,3 +69,15 @@ t.test('output as grid/table', async t => {
   )
   t.equal(resp, output['output-as-grid'])
 })
+
+t.test('default print full error object', async t => {
+  let resp = await cmd.execute(cli, [logFileErrorKey], {env: {'FORCE_COLOR': 0}})
+  t.equal(resp, output['output-error-key'])
+})
+
+t.test('do not print full error object', async t => {
+  let resp = await cmd.execute(cli, ['--error-key', false, logFileErrorKey],
+    {env: {'FORCE_COLOR': 0}})
+  t.equal(resp, '946684800000 error print error message: foo\n')
+})
+

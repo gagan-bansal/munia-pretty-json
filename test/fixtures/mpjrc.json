@@ -1,0 +1,16 @@
+{
+  "cache": true,
+  "d": false,
+  "debug": false,
+  "error-key": true,
+  "h": false,
+  "help": false,
+  "a": false,
+  "all": false,
+  "g": false,
+  "grid": false,
+  "t": "{level -l warn} - {message}",
+  "template": "{level -l warn} - {message}",
+  "k": "level",
+  "level-key": "level"
+}

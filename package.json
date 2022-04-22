@@ -42,6 +42,7 @@
   "devDependencies": {
     "concat-stream": "^2.0.0",
     "cross-spawn": "^7.0.3",
+    "jsonfile": "^6.1.0",
     "sinon": "^11.1.2",
     "tap": "^15.0.10"
   }

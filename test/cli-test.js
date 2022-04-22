@@ -1,6 +1,8 @@
 const t = require('tap')
-const fs = require('fs');
+const fs = require('fs')
+const fsp = require('fs/promises')
 const path = require('path')
+const jsonfile = require('jsonfile')
 const cmd = require('../test/cmd-helper.js')
 
 const cli = path.resolve(process.cwd(), './lib/cli.js')
@@ -9,6 +11,7 @@ const logFileErrorKey = path.resolve(process.cwd(), './test/fixtures/json-log-wi
 
 // collecting all outputs from fixtures as an object
 // with filename as key
+
 const output = fs.readdirSync(path.resolve(__dirname, 'fixtures'))
   .filter(f => /\.txt$/.test(f))
   .reduce((obj, file) => {
@@ -18,7 +21,7 @@ const output = fs.readdirSync(path.resolve(__dirname, 'fixtures'))
   }, {})
 
 t.test('default output', async t => {
-  let resp = await cmd.execute(cli, [logFile], {env: {'FORCE_COLOR': 3}})
+  let resp = await cmd.execute(cli, [logFile, '--cache', false], {env: {'FORCE_COLOR': 3}})
   t.equal(resp, output['output-default'])
 })
 
@@ -71,7 +74,8 @@ t.test('output as grid/table', async t => {
 })
 
 t.test('default print full error object', async t => {
-  let resp = await cmd.execute(cli, [logFileErrorKey], {env: {'FORCE_COLOR': 0}})
+  let resp = await cmd.execute(cli, [logFileErrorKey, '--cache', false],
+    {env: {'FORCE_COLOR': 0}})
   t.equal(resp, output['output-error-key'])
 })
 
@@ -81,3 +85,10 @@ t.test('do not print full error object', async t => {
   t.equal(resp, '946684800000 error print error message: foo\n')
 })
 
+t.test('read argv from cache .mpjrs', async t => {
+  const mpjrc = await jsonfile.readFile('./test/fixtures/mpjrc.json', 'utf8')
+  await fsp.writeFile('./.mpjrc', JSON.stringify(mpjrc))
+  const resp = await cmd.execute(cli, [logFile])
+  await fsp.rm('./.mpjrc')
+  t.equal(resp, 'error - print error message\nwarn - print warn message\n')
+})

@@ -54,6 +54,8 @@ $ munia-pretty-json  --template  '{module --color} - {level} - {message}'  app-l
     -C, --context ...... print number of lines before and after context
     -a, --all .......... print formatted json and non json records if true, default true
                          print only formatted json if false
+        --error-key .... print full value of error key, default true
+        --cache ........ read/write arguments from/to cache file './.mpjrc', default true
     -g, --grid ......... grid/table view, default false
     -d, --debug ........ print json parsing error message, default false
     -h, --help ......... help/usage infromation
@@ -73,7 +75,7 @@ $ munia-pretty-json  --template  '{module --color} - {level} - {message}'  app-l
                          effective only when used with --color option
                          it is useful to select defualt colors for levels
 
-  template special options:
+  template special options for specific options:
 
     -l, --level ........ level value, level upto which records to be included,
                          default 'info'
@@ -85,7 +87,7 @@ $ munia-pretty-json  --template  '{module --color} - {level} - {message}'  app-l
                          tokens as per dayjs https://day.js.org/docs/en/display/format
                          Note: option only related to time key
 
-  Special keys:
+  template special keys:
 
     REST ............... print rest of the keys and values as a JSON string
                          (keys which are not part of the template)
@@ -96,6 +98,7 @@ $ munia-pretty-json  --template  '{module --color} - {level} - {message}'  app-l
     --exclude-keys ..... keys to exclude from 'REST'
                          example: -t '{msg} {REST --exclude-keys=host,version}'
                          Note: option only related to 'REST' key
+
 </pre>
 
 ## Testing
